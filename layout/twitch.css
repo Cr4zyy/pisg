@@ -1,0 +1,647 @@
+
+
+/* <!--  Twitch colorscheme
+ *  
+ *  Plus set these values in your pisg config
+ *  <set HiCell="#43277b" HiCell2="#362354">
+ --> */
+
+
+#green-h {
+	height: 15px;
+	background-repeat: repeat-x;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABECAMAAAB3Xq9kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGNkQ1RUQ0Qjg3NDdFRjExQjVGNkE3MEUyMTY0M0U0MiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBOTM5N0JDQTQ3ODcxMUVGODkzNUNGMkY2QUU5Rjc1OSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBOTM5N0JDOTQ3ODcxMUVGODkzNUNGMkY2QUU5Rjc1OSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkY2RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY2RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+64u5NwAAAAxQTFRFOMFvzDRmwJ03dz/RfSOEgwAAABZJREFUeNpiYGIgBJkJQkaCkCAACDAAJKgAZxJASgkAAAAASUVORK5CYII=) 0px -1px; }
+#red-h {
+	height: 15px;
+	background-repeat: repeat-x;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABECAMAAAB3Xq9kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGNkQ1RUQ0Qjg3NDdFRjExQjVGNkE3MEUyMTY0M0U0MiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBOTM5N0JDQTQ3ODcxMUVGODkzNUNGMkY2QUU5Rjc1OSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBOTM5N0JDOTQ3ODcxMUVGODkzNUNGMkY2QUU5Rjc1OSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkY2RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY2RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+64u5NwAAAAxQTFRFOMFvzDRmwJ03dz/RfSOEgwAAABZJREFUeNpiYGIgBJkJQkaCkCAACDAAJKgAZxJASgkAAAAASUVORK5CYII=) 0px -18px; }
+#yellow-h {
+	height: 15px;
+	background-repeat: repeat-x;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABECAMAAAB3Xq9kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGNkQ1RUQ0Qjg3NDdFRjExQjVGNkE3MEUyMTY0M0U0MiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBOTM5N0JDQTQ3ODcxMUVGODkzNUNGMkY2QUU5Rjc1OSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBOTM5N0JDOTQ3ODcxMUVGODkzNUNGMkY2QUU5Rjc1OSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkY2RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY2RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+64u5NwAAAAxQTFRFOMFvzDRmwJ03dz/RfSOEgwAAABZJREFUeNpiYGIgBJkJQkaCkCAACDAAJKgAZxJASgkAAAAASUVORK5CYII=) 0px -35px; }
+#blue-h {
+	height: 15px;
+	background-repeat: repeat-x;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABECAMAAAB3Xq9kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGNkQ1RUQ0Qjg3NDdFRjExQjVGNkE3MEUyMTY0M0U0MiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBOTM5N0JDQTQ3ODcxMUVGODkzNUNGMkY2QUU5Rjc1OSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBOTM5N0JDOTQ3ODcxMUVGODkzNUNGMkY2QUU5Rjc1OSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkY2RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY2RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+64u5NwAAAAxQTFRFOMFvzDRmwJ03dz/RfSOEgwAAABZJREFUeNpiYGIgBJkJQkaCkCAACDAAJKgAZxJASgkAAAAASUVORK5CYII=) 0px -52px; }
+
+#green-v {
+	width: 15px;
+	background-repeat: repeat-y;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAAABCAMAAABQWPhfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGN0Q1RUQ0Qjg3NDdFRjExQjVGNkE3MEUyMTY0M0U0MiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCMTc4RkE2OTQ3ODgxMUVGQThENkI0NzgxQ0M1QjhCRSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCMTc4RkE2ODQ3ODgxMUVGQThENkI0NzgxQ0M1QjhCRSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkY3RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY3RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+rFYWrQAAAAxQTFRFcTjezDNmM8xmzJkz0wDV1AAAABZJREFUeNpiYEYHDOiAER0woQOAAAMADyUAZxXpzuoAAAAASUVORK5CYII=) -1px 0px; }
+#red-v {
+	width: 15px;
+	background-repeat: repeat-y;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAAABCAMAAABQWPhfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGN0Q1RUQ0Qjg3NDdFRjExQjVGNkE3MEUyMTY0M0U0MiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCMTc4RkE2OTQ3ODgxMUVGQThENkI0NzgxQ0M1QjhCRSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCMTc4RkE2ODQ3ODgxMUVGQThENkI0NzgxQ0M1QjhCRSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkY3RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY3RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+rFYWrQAAAAxQTFRFcTjezDNmM8xmzJkz0wDV1AAAABZJREFUeNpiYEYHDOiAER0woQOAAAMADyUAZxXpzuoAAAAASUVORK5CYII=) -18px 0px; }
+#yellow-v {
+	width: 15px;
+	background-repeat: repeat-y;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAAABCAMAAABQWPhfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGN0Q1RUQ0Qjg3NDdFRjExQjVGNkE3MEUyMTY0M0U0MiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCMTc4RkE2OTQ3ODgxMUVGQThENkI0NzgxQ0M1QjhCRSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCMTc4RkE2ODQ3ODgxMUVGQThENkI0NzgxQ0M1QjhCRSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkY3RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY3RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+rFYWrQAAAAxQTFRFcTjezDNmM8xmzJkz0wDV1AAAABZJREFUeNpiYEYHDOiAER0woQOAAAMADyUAZxXpzuoAAAAASUVORK5CYII=) -35px 0px; }
+#blue-v {
+	width: 15px;
+	background-repeat: repeat-y;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAAABCAMAAABQWPhfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGN0Q1RUQ0Qjg3NDdFRjExQjVGNkE3MEUyMTY0M0U0MiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCMTc4RkE2OTQ3ODgxMUVGQThENkI0NzgxQ0M1QjhCRSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCMTc4RkE2ODQ3ODgxMUVGQThENkI0NzgxQ0M1QjhCRSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkY3RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY3RDVFRDRCODc0N0VGMTFCNUY2QTcwRTIxNjQzRTQyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+rFYWrQAAAAxQTFRFcTjezDNmM8xmzJkz0wDV1AAAABZJREFUeNpiYEYHDOiAER0woQOAAAMADyUAZxXpzuoAAAAASUVORK5CYII=) -52px 0px; }
+
+A
+{
+    TEXT-DECORATION: none
+}
+A:link
+{
+    COLOR: #b3b3b3
+}
+A:visited
+{
+    COLOR: #75707e
+}
+A:hover
+{
+    COLOR: #e79933;
+    TEXT-DECORATION: underline
+}
+A.background
+{
+    TEXT-DECORATION: none
+}
+A.background:link
+{
+    COLOR: #b3b3b3
+}
+A.background:visited
+{
+    COLOR: #b3b3b3
+}
+A.background:hover
+{
+    COLOR: #422778;
+    TEXT-DECORATION: underline
+}
+b{
+    COLOR: #bfbfbf;
+}
+BODY
+{
+    FONT-SIZE: 13px;
+    COLOR: #b3b3b3;
+    FONT-FAMILY: Verdana, Arial, sans-serif;
+    BACKGROUND-COLOR: #22163a
+}
+TD
+{
+    FONT-SIZE: 13px;
+    COLOR: #b3b3b3;
+    FONT-FAMILY: Verdana, Arial, sans-serif;
+    TEXT-ALIGN: left;
+    PADDING: 5px;
+}
+.female, .female a {
+    color: #ff452b;
+}
+.male, .male a {
+    color: #ff452b;
+}
+
+.title
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 16px;
+    FONT-FAMILY: Tahoma, Arial, sans-serif;
+}
+.headtext
+{
+    FONT-WEIGHT: bold;
+    COLOR: #b3b3b3;
+    BACKGROUND-COLOR: #2f1e50;
+    TEXT-ALIGN: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #6441a5;
+    border-radius: 10px;
+}
+.headlinebg
+{
+    BACKGROUND-COLOR: #2f1e50
+}
+.tdtop
+{
+    BACKGROUND-COLOR: #2f1e50
+}
+.hicell
+{
+    BACKGROUND-COLOR: #2f1e50
+}
+.hicell10
+{
+    FONT-SIZE: 10px;
+    BACKGROUND-COLOR: #2f1e50
+}
+.rankc
+{
+    BACKGROUND-COLOR: #2f1e50
+}
+.hirankc
+{
+    FONT-WEIGHT: bold;
+    BACKGROUND-COLOR: #6441a5
+}
+.rankc10
+{
+    FONT-SIZE: 10px;
+    BACKGROUND-COLOR: #2f1e50
+}
+.rankc10center
+{
+    FONT-SIZE: 10px;
+    BACKGROUND-COLOR: #2f1e50;
+    TEXT-ALIGN: center
+}
+.hirankc10center
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    BACKGROUND-COLOR: #6441a5;
+    TEXT-ALIGN: center
+}
+.small
+{
+    FONT-SIZE: 10px;
+    FONT-FAMILY: Verdana, Arial, sans-serif
+}
+.asmall
+{
+    FONT-SIZE: 10px;
+    COLOR: #b3b3b3;
+    FONT-FAMILY: "Arial narrow", Arial, sans-serif
+    TEXT-ALIGN: center
+}
+
+.top-round {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.right-round {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.gradient-bar {
+    position: relative;
+    display: inline-block;
+}
+
+.gradient-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(47, 30, 80, 1), rgba(255, 255, 255, 0));
+    border-bottom-right-radius: 7px;
+    border-top-right-radius: 7px;
+    z-index: 10;
+}
+
+.gradient-bar-v {
+    position: relative;
+    display: inline-block;
+}
+
+.gradient-bar-v::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(34, 22, 58, 1), rgba(255, 255, 255, 0));
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    z-index: 10;
+}
+
+
+/* -----------------------------------------------------
+   created with https://www.codeandweb.com/texturepacker 
+   -----------------------------------------------------
+   $TexturePacker:SmartUpdate:8de5bdbb6ebe716eb72b5dbf307afb20:3efcc8f3a35da68e4e3050256ba84a70:3fa79cc55957e52fe891e8c64f007e73$
+   -----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(twitch.png);}
+
+.(ditto) {width:28px; height:28px; background-position: -39px -166px}
+.3Head {width:32px; height:32px; background-position: -1px -193px}
+.4HEad {width:32px; height:22px; background-position: -490px -1px}
+.4Head {width:20px; height:30px; background-position: -67px -132px}
+.5Head {width:26px; height:32px; background-position: -39px -132px}
+.AINTNOWAY {width:26px; height:21px; background-position: -78px -109px}
+.ANELE {width:28px; height:28px; background-position: -35px -453px}
+.AYAYA {width:32px; height:31px; background-position: -1px -567px}
+.AnotherRecord {width:28px; height:28px; background-position: -35px -483px}
+.ArgieB8 {width:28px; height:28px; background-position: -35px -513px}
+.ArsonNoSexy {width:18px; height:27px; background-position: -506px -552px}
+.AsexualPride {width:28px; height:28px; background-position: -35px -543px}
+.AsianGlow {width:24px; height:30px; background-position: -35px -262px}
+.Aware {width:23px; height:21px; background-position: -307px -65px}
+.BCWarrior {width:29px; height:27px; background-position: -110px -22px}
+.BOOBA {width:21px; height:21px; background-position: -369px -125px}
+.BOP {width:28px; height:28px; background-position: -144px -162px}
+.BabyRage {width:28px; height:28px; background-position: -35px -573px}
+.BangbooBounce {width:28px; height:28px; background-position: -65px -196px}
+.BatChest {width:28px; height:28px; background-position: -95px -196px}
+.Bedge {width:21px; height:21px; background-position: -346px -125px}
+.BegWan {width:28px; height:28px; background-position: -165px -24px}
+.BibleThump {width:36px; height:30px; background-position: -1px -129px}
+.BigBrother {width:24px; height:30px; background-position: -35px -294px}
+.BigPhish {width:28px; height:28px; background-position: -103px -75px}
+.BisexualPride {width:28px; height:28px; background-position: -113px -132px}
+.BlackLivesMatter {width:28px; height:28px; background-position: -114px -162px}
+.BlargNaut {width:28px; height:28px; background-position: -125px -192px}
+.BloodTrail {width:41px; height:28px; background-position: -1px -99px}
+.BrainSlug {width:28px; height:28px; background-position: -155px -192px}
+.BrokeBack {width:28px; height:28px; background-position: -163px -74px}
+.BuddhaBar {width:28px; height:28px; background-position: -173px -131px}
+.BunnyCharge {width:28px; height:28px; background-position: -174px -161px}
+.COPIUM {width:21px; height:21px; background-position: -478px -233px}
+.CaitlynS {width:28px; height:28px; background-position: -185px -191px}
+.CarlSmile {width:28px; height:28px; background-position: -195px -30px}
+.ChefFrank {width:28px; height:28px; background-position: -311px -35px}
+.ChewyYAY {width:28px; height:28px; background-position: -341px -35px}
+.Clap {width:28px; height:28px; background-position: -193px -60px}
+.Clueless {width:24px; height:21px; background-position: -281px -65px}
+.CoolCat {width:28px; height:28px; background-position: -253px -88px}
+.CoolStoryBob {width:28px; height:28px; background-position: -283px -88px}
+.CorgiDerp {width:27px; height:28px; background-position: -233px -120px}
+.CrreamAwk {width:28px; height:28px; background-position: -203px -120px}
+.CurseLit {width:28px; height:28px; background-position: -262px -118px}
+.DAESuppy {width:28px; height:28px; background-position: -292px -118px}
+.DBstyle {width:21px; height:30px; background-position: -69px -164px}
+.DIESOFCRINGE {width:43px; height:21px; background-position: -165px -1px}
+.Dance {width:28px; height:28px; background-position: -204px -150px}
+.DansGame {width:25px; height:32px; background-position: -35px -228px}
+.DarkKnight {width:28px; height:28px; background-position: -234px -150px}
+.DarkMode {width:28px; height:28px; background-position: -264px -148px}
+.DatSheffy {width:28px; height:28px; background-position: -294px -148px}
+.DendiFace {width:28px; height:28px; background-position: -245px -180px}
+.DinoDance {width:28px; height:28px; background-position: -275px -178px}
+.DogFace {width:28px; height:28px; background-position: -305px -178px}
+.DonoWall {width:28px; height:28px; background-position: -215px -210px}
+.DoritosChip {width:28px; height:28px; background-position: -245px -210px}
+.DxCat {width:28px; height:28px; background-position: -305px -208px}
+.EZ {width:28px; height:28px; background-position: -362px -65px}
+.EZY {width:28px; height:26px; background-position: -133px -104px}
+.EarthDay {width:28px; height:28px; background-position: -185px -221px}
+.EleGiggle {width:28px; height:28px; background-position: -215px -240px}
+.EntropyWins {width:28px; height:28px; background-position: -245px -240px}
+.ExtraLife {width:28px; height:28px; background-position: -275px -238px}
+.FBBlock {width:28px; height:28px; background-position: -337px -95px}
+.FBCatch {width:28px; height:28px; background-position: -367px -95px}
+.FBChallenge {width:28px; height:28px; background-position: -421px -112px}
+.FBPass {width:28px; height:28px; background-position: -421px -142px}
+.FBPenalty {width:28px; height:28px; background-position: -452px -52px}
+.FBRun {width:28px; height:28px; background-position: -452px -82px}
+.FBSpiral {width:28px; height:28px; background-position: -451px -112px}
+.FBtouchdown {width:28px; height:28px; background-position: -451px -142px}
+.FUNgineer {width:24px; height:30px; background-position: -35px -326px}
+.FailFish {width:22px; height:30px; background-position: -78px -45px}
+.FallCry {width:28px; height:28px; background-position: -371px -35px}
+.FallHalp {width:28px; height:28px; background-position: -392px -65px}
+.FallWinning {width:28px; height:28px; background-position: -422px -52px}
+.FamilyMan {width:28px; height:28px; background-position: -422px -82px}
+.FeelsBadMan {width:30px; height:29px; background-position: -378px -1px}
+.FeelsDankMan {width:28px; height:32px; background-position: -318px -1px}
+.FeelsGoodMan {width:32px; height:24px; background-position: -524px -1px}
+.FeelsOkayMan {width:28px; height:27px; background-position: -523px -27px}
+.FeelsRainMan {width:28px; height:28px; background-position: -553px -28px}
+.FeelsSpecialMan {width:28px; height:25px; background-position: -163px -104px}
+.FeelsStrongMan {width:32px; height:31px; background-position: -44px -99px}
+.FeelsWeirdMan {width:28px; height:27px; background-position: -482px -84px}
+.FlawlessVictory {width:28px; height:28px; background-position: -482px -54px}
+.FootBall {width:28px; height:28px; background-position: -481px -113px}
+.FootGoal {width:28px; height:28px; background-position: -481px -143px}
+.FootYellow {width:28px; height:28px; background-position: -512px -56px}
+.ForSigmar {width:28px; height:28px; background-position: -511px -116px}
+.FrankerZ {width:40px; height:30px; background-position: -1px -67px}
+.FreakinStinkin {width:28px; height:28px; background-position: -511px -146px}
+.FutureMan {width:28px; height:28px; background-position: -542px -58px}
+.GIGACHAD {width:21px; height:21px; background-position: -538px -441px}
+.GayPride {width:28px; height:28px; background-position: -572px -88px}
+.GenderFluidPride {width:28px; height:28px; background-position: -541px -118px}
+.Getcamped {width:28px; height:28px; background-position: -571px -118px}
+.GingerPower {width:21px; height:27px; background-position: -500px -25px}
+.GivePLZ {width:28px; height:28px; background-position: -541px -148px}
+.GlitchCat {width:28px; height:28px; background-position: -571px -148px}
+.GlitchLit {width:28px; height:28px; background-position: -125px -222px}
+.GlitchNRG {width:28px; height:28px; background-position: -155px -222px}
+.GoatEmotey {width:28px; height:28px; background-position: -185px -251px}
+.GoldPLZ {width:28px; height:28px; background-position: -215px -270px}
+.GrammarKing {width:28px; height:28px; background-position: -245px -270px}
+.GunRun {width:28px; height:28px; background-position: -275px -268px}
+.HACKERMANS {width:28px; height:28px; background-position: -305px -268px}
+.HSCheers {width:28px; height:28px; background-position: -365px -238px}
+.HSWP {width:28px; height:28px; background-position: -365px -268px}
+.HUHH {width:28px; height:28px; background-position: -395px -177px}
+.HYPERBRUH {width:32px; height:32px; background-position: -1px -227px}
+.HYPERCLAP {width:28px; height:28px; background-position: -395px -237px}
+.HYPERS {width:28px; height:28px; background-position: -395px -267px}
+.HandsUp {width:38px; height:20px; background-position: -450px -1px}
+.HarleyWink {width:28px; height:28px; background-position: -324px -148px}
+.HassaanChop {width:28px; height:28px; background-position: -335px -178px}
+.HeyGuys {width:28px; height:28px; background-position: -335px -208px}
+.Hmm {width:21px; height:21px; background-position: -529px -494px}
+.HolidayCookie {width:28px; height:28px; background-position: -335px -238px}
+.HolidayLog {width:28px; height:28px; background-position: -335px -268px}
+.HolidayPresent {width:28px; height:28px; background-position: -354px -148px}
+.HolidaySanta {width:28px; height:28px; background-position: -365px -178px}
+.HolidayTree {width:28px; height:28px; background-position: -365px -208px}
+.HotPokket {width:28px; height:30px; background-position: -35px -196px}
+.HungryPaimon {width:28px; height:28px; background-position: -395px -207px}
+.ImTyping {width:28px; height:28px; background-position: -425px -202px}
+.IntersexPride {width:28px; height:28px; background-position: -425px -232px}
+.InuyoFace {width:28px; height:28px; background-position: -425px -262px}
+.ItsBoshyTime {width:28px; height:28px; background-position: -481px -173px}
+.JKanStyle {width:21px; height:27px; background-position: -515px -436px}
+.Jebaited {width:28px; height:28px; background-position: -511px -176px}
+.Jebasted {width:28px; height:28px; background-position: -541px -178px}
+.JonCarnage {width:20px; height:27px; background-position: -485px -494px}
+.KAPOW {width:28px; height:28px; background-position: -571px -178px}
+.KEKHeim {width:28px; height:28px; background-position: -485px -256px}
+.KEKW {width:32px; height:32px; background-position: -1px -261px}
+.KEKWait {width:32px; height:32px; background-position: -1px -295px}
+.KEKWlaugh {width:28px; height:28px; background-position: -515px -256px}
+.KKomrade {width:28px; height:28px; background-position: -575px -238px}
+.KKonaW {width:32px; height:32px; background-position: -1px -329px}
+.Kapp {width:8px; height:21px; background-position: -592px -1px}
+.Kappa {width:22px; height:28px; background-position: -141px -22px}
+.KappaClaus {width:28px; height:28px; background-position: -481px -203px}
+.KappaPride {width:28px; height:28px; background-position: -511px -206px}
+.KappaRoss {width:28px; height:28px; background-position: -541px -208px}
+.KappaWealth {width:28px; height:28px; background-position: -571px -208px}
+.Kappu {width:28px; height:28px; background-position: -455px -258px}
+.Keepo {width:27px; height:29px; background-position: -35px -422px}
+.KevinTurtle {width:21px; height:27px; background-position: -574px -388px}
+.KingWorldCup {width:28px; height:28px; background-position: -545px -238px}
+.Kippa {width:24px; height:28px; background-position: -455px -172px}
+.KomodoHype {width:28px; height:28px; background-position: -545px -268px}
+.KonCha {width:28px; height:28px; background-position: -575px -268px}
+.Kreygasm {width:19px; height:27px; background-position: -485px -552px}
+.LETSGO {width:21px; height:21px; background-position: -508px -581px}
+.LUL {width:28px; height:28px; background-position: -545px -298px}
+.LULW {width:28px; height:32px; background-position: -348px -1px}
+.LaundryBasket {width:28px; height:28px; background-position: -425px -292px}
+.Lechonk {width:28px; height:28px; background-position: -455px -288px}
+.LesbianPride {width:28px; height:28px; background-position: -485px -286px}
+.LionOfYara {width:28px; height:28px; background-position: -395px -297px}
+.MVGame {width:28px; height:28px; background-position: -61px -318px}
+.MYAAA {width:28px; height:28px; background-position: -61px -348px}
+.Madge {width:21px; height:21px; background-position: -561px -441px}
+.Mau5 {width:28px; height:28px; background-position: -575px -298px}
+.MaxLOL {width:28px; height:28px; background-position: -425px -322px}
+.MechaRobot {width:28px; height:28px; background-position: -485px -316px}
+.MercyWing1 {width:28px; height:28px; background-position: -515px -316px}
+.MercyWing2 {width:28px; height:28px; background-position: -545px -328px}
+.MikeHogu {width:28px; height:28px; background-position: -575px -328px}
+.MingLee {width:28px; height:28px; background-position: -455px -348px}
+.ModLove {width:28px; height:28px; background-position: -515px -346px}
+.MorphinTime {width:28px; height:28px; background-position: -61px -288px}
+.MrDestructoid {width:39px; height:27px; background-position: -210px -1px}
+.MyAvatar {width:28px; height:28px; background-position: -61px -378px}
+.NODDERS {width:21px; height:21px; background-position: -528px -540px}
+.NOOO {width:27px; height:27px; background-position: -485px -465px}
+.NOOOO {width:22px; height:21px; background-position: -313px -95px}
+.NOPERS {width:28px; height:28px; background-position: -65px -498px}
+.NewRecord {width:28px; height:28px; background-position: -122px -252px}
+.NiceTry {width:28px; height:28px; background-position: -152px -252px}
+.NinjaGrumpy {width:28px; height:28px; background-position: -64px -408px}
+.NomNom {width:28px; height:28px; background-position: -65px -438px}
+.NonbinaryPride {width:28px; height:28px; background-position: -65px -468px}
+.NotATK {width:28px; height:28px; background-position: -65px -528px}
+.NotLikeThis {width:28px; height:28px; background-position: -65px -558px}
+.O.O {width:24px; height:18px; background-position: -501px -236px}
+.O.o {width:24px; height:18px; background-position: -501px -236px}
+.OMEGALUL {width:21px; height:21px; background-position: -125px -582px}
+.OOOO {width:28px; height:28px; background-position: -152px -282px}
+.OSFrog {width:28px; height:28px; background-position: -91px -316px}
+.O_O {width:24px; height:18px; background-position: -501px -236px}
+.O_o {width:24px; height:18px; background-position: -501px -236px}
+.OhMyDog {width:28px; height:28px; background-position: -122px -282px}
+.OneHand {width:20px; height:27px; background-position: -514px -465px}
+.OpieOP {width:28px; height:28px; background-position: -92px -286px}
+.OptimizePrime {width:22px; height:27px; background-position: -397px -95px}
+.PETTHEMODS {width:21px; height:21px; background-position: -551px -540px}
+.PETTHEPEEPO {width:28px; height:28px; background-position: -125px -462px}
+.PJSalt {width:36px; height:30px; background-position: -1px -161px}
+.PJSugar {width:28px; height:28px; background-position: -155px -552px}
+.PMSTwin {width:23px; height:30px; background-position: -78px -77px}
+.POGGERS {width:32px; height:32px; background-position: -1px -465px}
+.POGGIES {width:21px; height:21px; background-position: -582px -464px}
+.POGSLIDE {width:28px; height:28px; background-position: -184px -401px}
+.PParrot {width:28px; height:28px; background-position: -215px -450px}
+.PRChase {width:28px; height:28px; background-position: -245px -420px}
+.PanicVis {width:28px; height:28px; background-position: -91px -376px}
+.PansexualPride {width:28px; height:28px; background-position: -182px -281px}
+.PartyHat {width:28px; height:28px; background-position: -94px -406px}
+.PartyKirby {width:28px; height:28px; background-position: -95px -436px}
+.PartyTime {width:28px; height:28px; background-position: -95px -466px}
+.PauseChamp {width:28px; height:28px; background-position: -95px -526px}
+.PeepoNoob {width:28px; height:28px; background-position: -242px -300px}
+.PeoplesChamp {width:28px; height:28px; background-position: -152px -312px}
+.PepeHands {width:32px; height:32px; background-position: -1px -397px}
+.PepeLaugh {width:32px; height:32px; background-position: -1px -431px}
+.PepePls {width:21px; height:28px; background-position: -583px -28px}
+.Pepega {width:32px; height:25px; background-position: -558px -1px}
+.PepegaAim {width:21px; height:21px; background-position: -531px -563px}
+.PepoDance {width:28px; height:28px; background-position: -154px -402px}
+.PepoG {width:32px; height:26px; background-position: -410px -24px}
+.PepoThink {width:32px; height:31px; background-position: -251px -1px}
+.PermaSmug {width:28px; height:28px; background-position: -125px -432px}
+.PicoMause {width:28px; height:28px; background-position: -125px -492px}
+.PikaRamen {width:28px; height:28px; background-position: -125px -552px}
+.PinkMercy {width:28px; height:28px; background-position: -155px -432px}
+.PipeHype {width:28px; height:28px; background-position: -155px -462px}
+.PixelBob {width:28px; height:28px; background-position: -155px -492px}
+.PizzaTime {width:28px; height:28px; background-position: -155px -522px}
+.Pog {width:21px; height:21px; background-position: -554px -563px}
+.PogBones {width:28px; height:28px; background-position: -182px -341px}
+.PogChamp {width:28px; height:28px; background-position: -181px -371px}
+.PogU {width:28px; height:28px; background-position: -185px -431px}
+.Poooound {width:28px; height:28px; background-position: -185px -461px}
+.PopCorn {width:28px; height:28px; background-position: -185px -521px}
+.PopGhost {width:28px; height:28px; background-position: -185px -551px}
+.PopNemo {width:28px; height:28px; background-position: -212px -360px}
+.PoroSad {width:28px; height:28px; background-position: -242px -360px}
+.PotFriend {width:28px; height:28px; background-position: -214px -390px}
+.PowerUpL {width:28px; height:28px; background-position: -244px -390px}
+.PowerUpR {width:28px; height:28px; background-position: -215px -420px}
+.PraiseIt {width:28px; height:28px; background-position: -215px -540px}
+.Prayge {width:21px; height:21px; background-position: -559px -487px}
+.PrimeMe {width:28px; height:28px; background-position: -245px -480px}
+.PunOko {width:28px; height:28px; background-position: -245px -540px}
+.PunchTrees {width:24px; height:24px; background-position: -474px -25px}
+.R) {width:24px; height:18px; background-position: -95px -586px}
+.R-) {width:24px; height:18px; background-position: -95px -586px}
+.REEeee {width:32px; height:32px; background-position: -1px -499px}
+.RaccAttack {width:28px; height:28px; background-position: -215px -570px}
+.RainbowPls {width:28px; height:28px; background-position: -245px -570px}
+.RalpherZ {width:33px; height:30px; background-position: -43px -67px}
+.RareParrot {width:28px; height:28px; background-position: -272px -300px}
+.RedCoat {width:19px; height:27px; background-position: -507px -523px}
+.ResidentSleeper {width:28px; height:28px; background-position: -272px -330px}
+.RitzMitz {width:28px; height:28px; background-position: -275px -420px}
+.RlyTho {width:28px; height:28px; background-position: -275px -450px}
+.RuleFive {width:28px; height:28px; background-position: -275px -480px}
+.RyuChamp {width:28px; height:28px; background-position: -275px -510px}
+.SMOrc {width:32px; height:32px; background-position: -1px -533px}
+.SSSsss {width:24px; height:24px; background-position: -455px -202px}
+.SUBprise {width:28px; height:28px; background-position: -305px -538px}
+.SUSSY {width:21px; height:21px; background-position: -552px -510px}
+.SabaPing {width:28px; height:28px; background-position: -275px -540px}
+.Sadge {width:28px; height:22px; background-position: -251px -64px}
+.SeemsGood {width:28px; height:28px; background-position: -302px -298px}
+.SeriousSloth {width:28px; height:28px; background-position: -302px -328px}
+.ShadyLulu {width:28px; height:28px; background-position: -332px -298px}
+.ShazBotstix {width:24px; height:30px; background-position: -35px -358px}
+.Shush {width:28px; height:28px; background-position: -302px -358px}
+.SingsMic {width:28px; height:28px; background-position: -362px -298px}
+.SingsNote {width:28px; height:28px; background-position: -332px -328px}
+.SmoocherZ {width:28px; height:28px; background-position: -332px -358px}
+.SoBayed {width:24px; height:30px; background-position: -35px -390px}
+.SoonerLater {width:28px; height:28px; background-position: -362px -328px}
+.Squid1 {width:28px; height:28px; background-position: -362px -358px}
+.Squid2 {width:28px; height:28px; background-position: -304px -388px}
+.Squid3 {width:28px; height:28px; background-position: -334px -388px}
+.Squid4 {width:28px; height:28px; background-position: -305px -418px}
+.StinkyCheese {width:28px; height:28px; background-position: -305px -448px}
+.StinkyGlitch {width:28px; height:28px; background-position: -305px -478px}
+.StoneLightning {width:20px; height:27px; background-position: -485px -523px}
+.StrawBeary {width:28px; height:28px; background-position: -305px -508px}
+.SuperVinlin {width:28px; height:28px; background-position: -305px -568px}
+.SwiftRage {width:21px; height:28px; background-position: -455px -228px}
+.TBAngel {width:28px; height:28px; background-position: -335px -448px}
+.TF2John {width:22px; height:30px; background-position: -89px -132px}
+.TPFufun {width:28px; height:28px; background-position: -392px -327px}
+.TPcrunchyroll {width:28px; height:28px; background-position: -365px -568px}
+.TTours {width:28px; height:28px; background-position: -395px -417px}
+.TakeNRG {width:28px; height:28px; background-position: -335px -418px}
+.TearGlove {width:28px; height:28px; background-position: -335px -478px}
+.TehePelo {width:28px; height:28px; background-position: -335px -508px}
+.ThankEgg {width:28px; height:28px; background-position: -335px -538px}
+.TheIlluminati {width:28px; height:28px; background-position: -335px -568px}
+.TheRinger {width:20px; height:27px; background-position: -507px -494px}
+.TheTarFu {width:28px; height:28px; background-position: -364px -388px}
+.TheThing {width:28px; height:28px; background-position: -365px -418px}
+.ThisIsFine {width:28px; height:28px; background-position: -365px -448px}
+.ThunBeast {width:26px; height:28px; background-position: -223px -60px}
+.TinyFace {width:28px; height:28px; background-position: -365px -478px}
+.TombRaid {width:28px; height:28px; background-position: -365px -508px}
+.TooSpicy {width:28px; height:28px; background-position: -365px -538px}
+.TransgenderPride {width:28px; height:28px; background-position: -392px -357px}
+.TriDance {width:28px; height:28px; background-position: -422px -352px}
+.TriHard {width:28px; height:28px; background-position: -394px -387px}
+.TwitchConHYPE {width:28px; height:28px; background-position: -395px -447px}
+.TwitchLit {width:28px; height:28px; background-position: -395px -477px}
+.TwitchRPG {width:28px; height:28px; background-position: -395px -537px}
+.TwitchSings {width:28px; height:28px; background-position: -395px -567px}
+.TwitchUnity {width:28px; height:28px; background-position: -424px -382px}
+.TwitchVotes {width:28px; height:28px; background-position: -454px -378px}
+.UWot {width:28px; height:28px; background-position: -425px -472px}
+.UnSane {width:28px; height:28px; background-position: -425px -442px}
+.UncleNox {width:28px; height:28px; background-position: -425px -412px}
+.VIBE {width:28px; height:28px; background-position: -425px -502px}
+.VirtualHug {width:28px; height:28px; background-position: -425px -532px}
+.VoHiYo {width:28px; height:28px; background-position: -425px -562px}
+.VoteNay {width:28px; height:28px; background-position: -455px -408px}
+.VoteYea {width:28px; height:28px; background-position: -455px -438px}
+.WAYTOODANK {width:28px; height:28px; background-position: -455px -498px}
+.WTRuck {width:28px; height:28px; background-position: -515px -376px}
+.WaitWhat {width:28px; height:28px; background-position: -455px -468px}
+.WholeWheat {width:20px; height:30px; background-position: -92px -164px}
+.WhySoSerious {width:28px; height:28px; background-position: -455px -558px}
+.WideHardo {width:79px; height:20px; background-position: -1px -23px}
+.WutFace {width:28px; height:28px; background-position: -485px -405px}
+.YEP {width:22px; height:21px; background-position: -322px -125px}
+.YouDontSay {width:28px; height:28px; background-position: -485px -435px}
+.YouWHY {width:28px; height:28px; background-position: -515px -406px}
+._3 {width:24px; height:18px; background-position: -162px -54px}
+.bleedPurple {width:28px; height:28px; background-position: -133px -74px}
+.blobDance {width:28px; height:28px; background-position: -143px -132px}
+.bongoTap {width:25px; height:25px; background-position: -106px -105px}
+.catJAM {width:28px; height:28px; background-position: -251px -34px}
+.catKISS {width:28px; height:28px; background-position: -281px -35px}
+.cmonBruh {width:28px; height:28px; background-position: -193px -90px}
+.confusedCat {width:28px; height:28px; background-position: -223px -90px}
+.copyThis {width:28px; height:28px; background-position: -332px -65px}
+.ddHuh {width:28px; height:28px; background-position: -215px -180px}
+.donowall {width:21px; height:21px; background-position: -545px -418px}
+.duDudu {width:28px; height:28px; background-position: -275px -208px}
+.ez {width:28px; height:28px; background-position: -305px -238px}
+.forsenCD {width:28px; height:28px; background-position: -512px -86px}
+.gachiBASS {width:28px; height:28px; background-position: -572px -58px}
+.gachiGASM {width:24px; height:28px; background-position: -225px -30px}
+.gachiHYPER {width:28px; height:28px; background-position: -542px -88px}
+.imGlitch {width:28px; height:28px; background-position: -425px -172px}
+.lebronJAM {width:21px; height:21px; background-position: -485px -581px}
+.lickR {width:28px; height:28px; background-position: -515px -286px}
+.mcaT {width:28px; height:28px; background-position: -455px -318px}
+.modCheck {width:28px; height:28px; background-position: -485px -346px}
+.monkaEyes {width:75px; height:20px; background-position: -1px -45px}
+.monkaGun {width:28px; height:28px; background-position: -545px -358px}
+.monkaH {width:28px; height:28px; background-position: -575px -358px}
+.monkaHmm {width:28px; height:28px; background-position: -62px -228px}
+.monkaOMEGA {width:32px; height:32px; background-position: -1px -363px}
+.monkaS {width:28px; height:28px; background-position: -92px -226px}
+.monkaSHAKE {width:28px; height:28px; background-position: -62px -258px}
+.monkaSTEER {width:28px; height:25px; background-position: -444px -25px}
+.monkaTOS {width:27px; height:28px; background-position: -392px -147px}
+.monkaW {width:21px; height:21px; background-position: -568px -418px}
+.monkaX {width:28px; height:28px; background-position: -92px -256px}
+.muted {width:21px; height:21px; background-position: -529px -517px}
+.o.O {width:24px; height:18px; background-position: -501px -236px}
+.o.o {width:24px; height:18px; background-position: -501px -236px}
+.o_O {width:24px; height:18px; background-position: -501px -236px}
+.o_o {width:24px; height:18px; background-position: -501px -236px}
+.panicBasket {width:28px; height:28px; background-position: -91px -346px}
+.pastaThat {width:28px; height:28px; background-position: -95px -496px}
+.peepoArrive {width:28px; height:28px; background-position: -95px -556px}
+.peepoBlanket {width:31px; height:32px; background-position: -285px -1px}
+.peepoClap {width:21px; height:21px; background-position: -148px -582px}
+.peepoDJ {width:21px; height:21px; background-position: -171px -582px}
+.peepoGiggles {width:25px; height:21px; background-position: -83px -22px}
+.peepoHappy {width:28px; height:20px; background-position: -132px -52px}
+.peepoHey {width:21px; height:21px; background-position: -536px -465px}
+.peepoLeave {width:28px; height:28px; background-position: -212px -300px}
+.peepoLove {width:28px; height:22px; background-position: -102px -51px}
+.peepoPooPoo {width:28px; height:28px; background-position: -182px -311px}
+.peepoRun {width:28px; height:28px; background-position: -212px -330px}
+.peepoSad {width:28px; height:28px; background-position: -242px -330px}
+.peepoShy {width:21px; height:21px; background-position: -559px -464px}
+.peepoSimp {width:28px; height:28px; background-position: -122px -312px}
+.pepeD {width:28px; height:28px; background-position: -121px -342px}
+.pepeDS {width:28px; height:28px; background-position: -121px -372px}
+.pepeJAM {width:22px; height:21px; background-position: -397px -124px}
+.pepeJAMJAM {width:28px; height:28px; background-position: -151px -342px}
+.pepeLaugh {width:28px; height:28px; background-position: -151px -372px}
+.pepeMeltdown {width:28px; height:28px; background-position: -124px -402px}
+.pikaOMG {width:28px; height:28px; background-position: -125px -522px}
+.popCat {width:28px; height:28px; background-position: -185px -491px}
+.ppJedi {width:28px; height:28px; background-position: -215px -480px}
+.ppOverheat {width:28px; height:28px; background-position: -215px -510px}
+.pressF {width:28px; height:28px; background-position: -245px -450px}
+.pugPls {width:28px; height:28px; background-position: -245px -510px}
+.ratJAM {width:21px; height:21px; background-position: -582px -487px}
+.riPepperonis {width:28px; height:28px; background-position: -274px -390px}
+.ricardoFlick {width:28px; height:28px; background-position: -272px -360px}
+.sadCat {width:28px; height:28px; background-position: -275px -570px}
+.sumSmash {width:28px; height:27px; background-position: -485px -376px}
+.twitchRaid {width:28px; height:28px; background-position: -395px -507px}
+.weSmart {width:27px; height:28px; background-position: -545px -388px}
+.weirdChamp {width:28px; height:28px; background-position: -455px -528px}
+.widepeepoHappy {width:80px; height:19px; background-position: -83px -1px}
+.widepeepoSad {width:80px; height:20px; background-position: -1px -1px}
+.xdd {width:38px; height:21px; background-position: -410px -1px}

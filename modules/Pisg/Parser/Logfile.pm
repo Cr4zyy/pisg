@@ -60,6 +60,8 @@ sub new
     $self->{ignorewords_regexp} = qr/$self->{cfg}->{ignorewords}/i if $self->{cfg}->{ignorewords};
     $self->{violentwords_regexp} = qr/^($self->{cfg}->{violentwords}) (\S+)(.*)/i if $self->{cfg}->{violentwords};
     $self->{chartsregexp} = qr/^$self->{cfg}->{chartsregexp}/i if $self->{cfg}->{chartsregexp};
+    #twitch emotes
+    $self->{emotewords_regexp} = qr/($self->{cfg}->{emotewords})/i if $self->{cfg}->{emotewords};
 
     return $self;
 }
@@ -409,6 +411,14 @@ sub _parse_file
                         push @{ $lines->{foullines}{$nick} }, $line;
                     }
 
+                    #emote lines
+                    if ($self->{emotewords_regexp} and my @emote = $saying =~ /$self->{emotewords_regexp}/) {
+                        $stats->{emote}{$nick} += scalar @emote;
+                        push @{ $lines->{emotelines}{$nick} }, $line;
+                        $stats->{emotes}{$1}++;
+                        $stats->{emotenicks}{$1} = $nick;
+                    }
+
                     # Who smiles the most?
                     my $e = '[8;:=%]'; # eyes
                     my $n = '[-oc*^]'; # nose
@@ -454,7 +464,7 @@ sub _parse_file
                         $stats->{sex_line_times}{$s}[int($hour/6)]++;
                     }
 
-                    _parse_words($stats, $saying, $nick, $self->{ignorewords_regexp}, $hour);
+                    _parse_words($stats, $saying, $nick, $self->{ignorewords_regexp}, $self->{emotewords_regexp}, $hour);
                 } # ignored
             } # repeated
             $stats->{lastnormal} = $line;
@@ -522,7 +532,7 @@ sub _parse_file
                     $stats->{sex_line_times}{$s}[int($hour/6)]++;
                 }
 
-                _parse_words($stats, $saying, $nick, $self->{ignorewords_regexp}, $hour);
+                _parse_words($stats, $saying, $nick, $self->{ignorewords_regexp}, $self->{emotewords_regexp}, $hour);
             } # ignored
         } # action lines
 
@@ -644,7 +654,7 @@ sub _modechanges
 
 sub _parse_words
 {
-    my ($stats, $saying, $nick, $ignorewords_regexp, $hour) = @_;
+    my ($stats, $saying, $nick, $ignorewords_regexp, $emote_regexp, $hour) = @_;
     # Cache time of day
     my $tod = int($hour/6);
 
@@ -656,6 +666,8 @@ sub _parse_words
         $stats->{word_times}{$nick}[$tod]++;
         # remove uninteresting words
         next if $ignorewords_regexp and $word =~ m/$ignorewords_regexp/i;
+        #ignore emotes
+        next if $emote_regexp and $word =~ m/$emote_regexp/i;
 
         # ignore contractions
         next if ($word =~ m/'.{1,2}$/o);
@@ -853,7 +865,7 @@ sub _merge_stats
             $stats->{$key} = $s->{$key};
         } elsif ($key =~ /^(parsedlines|totallines)$/) { # {key} = int: add
             $stats->{$key} += $s->{$key};
-        } elsif ($key =~ /^(wordnicks|word_upcase|urlnicks|chartnicks|smileynicks)$/) { # {key}->{} = str: copy
+        } elsif ($key =~ /^(wordnicks|word_upcase|urlnicks|chartnicks|emotenicks|smileynicks)$/) { # {key}->{} = str: copy
             foreach my $subkey (keys %{$s->{$key}}) {
                 $stats->{$key}->{$subkey} = $s->{$key}->{$subkey};
             }

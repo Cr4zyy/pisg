@@ -126,7 +126,7 @@ sub create_output
         $self->_questions();
         $self->_shoutpeople();
         $self->_capspeople();
-        $self->_violent();
+        $self->_violent() if $self->{cfg}->{showviolentlines};
         $self->_mostsmiles();
         $self->_mostsad();
         $self->_linelengths();
@@ -141,6 +141,10 @@ sub create_output
 
     if ($self->{cfg}->{showactivegenders}) {
         $self->_activegenders();
+    }
+    
+    if ($self->{cfg}->{showemotes}) {
+        $self->_emotes();
     }
 
     if ($self->{cfg}->{showmuw}) {
@@ -170,14 +174,14 @@ sub create_output
     if ($self->{cfg}->{showbignumbers}) {
         $self->_headline($self->_template_text('othernumtopic'));
         _html("<table width=\"$self->{cfg}->{tablewidth}\">"); # Needed for sections
-        $self->_gotkicks();
-        $self->_mostkicks();
+        $self->_gotkicks() if $self->{cfg}->{showkicks};
+        $self->_mostkicks() if $self->{cfg}->{showkicks};
         $self->_mostop() if $self->{cfg}->{showops};
         $self->_mosthalfop() if $self->{cfg}->{showhalfops};
         $self->_mostvoice() if $self->{cfg}->{showvoices};
         $self->_mostactions();
         $self->_mostmonologues();
-        $self->_mostjoins();
+        $self->_mostjoins() if $self->{cfg}->{showjoins};
         $self->_mostfoul();
         _html("</table>"); # Needed for sections
     }
@@ -211,6 +215,7 @@ sub _htmlheader
     my %hash = (
         network    => $self->{cfg}->{network},
         maintainer => $self->{cfg}->{maintainer},
+        chan_link => $self->{cfg}->{chan_link},
         days       => $self->{stats}->{days},
         nicks      => scalar keys %{ $self->{stats}->{lines} }
     );
@@ -399,8 +404,7 @@ sub _pagefooter
     close(PAGEFOOT);
 }
 
-sub _activedays
-{
+sub _activedays {
     # The most actives days on the channel
     my $self = shift;
     my $days = $self->{stats}->{days};
@@ -428,19 +432,28 @@ sub _activedays
 
     for (my $day = $days - $ndays + 1; $day <= $days ; $day++) {
         my $lines = $self->{stats}->{day_lines}[$day];
-        _html("<td align=\"center\" valign=\"bottom\" class=\"asmall\">$lines<br />");
+        _html("<td align=\"center\" valign=\"bottom\" class=\"asmall\">$lines<br /><span class=\"gradient-bar-v\">");
+        my $first = 1;
         for (my $time = 4; $time >= 0; $time--) {
             if (defined($self->{stats}->{day_times}[$day][$time])) {
                 my $size = int(($self->{stats}->{day_times}[$day][$time] / $highest_value) * 100);
 
                 my $image = "pic_v_".$time*6;
                 $image = $self->{cfg}->{$image};
-                _html("<img id=\"$image\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=
-\" width=\"15\" height=\"$size\" alt=\"$size\" title=\"$size\" /><br />") if $size;
 
+                if ($size) {
+                    if ($first) {
+                        _html("<img id=\"$image\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=
+\" width=\"15\" height=\"$size\" alt=\"$size\" title=\"$size\" class=\"top-round\" /><br />");
+                        $first = 0;
+                    } else {
+                        _html("<img id=\"$image\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=
+\" width=\"15\" height=\"$size\" alt=\"$size\" title=\"$size\" /><br />");
+                    }
+                }
             }
         }
-        _html("</td>");
+        _html("</span></td>");
     }
 
     _html("</tr><tr>");
@@ -455,6 +468,7 @@ sub _activedays
         $self->_legend();
     }
 }
+
 
 sub _activetimes
 {
@@ -478,8 +492,8 @@ sub _activetimes
         my $image = "pic_v_".(int($hour/6)*6);
         $image = $self->{cfg}->{$image};
 
-        $output{$hour} = "<td align=\"center\" valign=\"bottom\" class=\"asmall\">$percent%<br /><img id=\"$image\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=
-\" width=\"15\" height=\"$size\" alt=\"$lines_per_hour\" title=\"$lines_per_hour\"/></td>" if $size;
+        $output{$hour} = "<td align=\"center\" valign=\"bottom\" class=\"asmall\">$percent%<br /><span class=\"gradient-bar-v\"><img id=\"$image\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=
+\" width=\"15\" height=\"$size\" alt=\"$lines_per_hour\" title=\"$lines_per_hour\" class=\"top-round\"/></span></td>" if $size;
     }
 
     _html("<table border=\"0\"><tr>");
@@ -536,6 +550,8 @@ sub _activenicks
 
     my @active;
     my $nicks;
+    
+    
     if ($self->{cfg}->{sortbywords}) {
         @active = sort { $self->{stats}->{words}{$b} <=> $self->{stats}->{words}{$a} } keys %{ $self->{stats}->{words} };
         $nicks = scalar keys %{ $self->{stats}->{words} };
@@ -618,7 +634,7 @@ sub _activenicks
         
         my $output = '';
         $output .= "<td $style>";
-
+        
         # Hilight nick with gendercolors
         if ($sex and $sex eq 'm') {
             $output .= '<span class="male">';
@@ -629,7 +645,13 @@ sub _activenicks
         } else {
             $output .= '<span>';
         }
+        if ($c == 1) {
+            $output .= '<b>';
+        }
         $output .= $visiblenick;
+        if ($c == 1) {
+            $output .= '</b>';
+        }
         $output .= '</span></td>';
 
         if ($self->{cfg}->{showlines}) {
@@ -724,9 +746,72 @@ sub _activenicks
             _html("</tr></table>");
         }
     }
+    
+    
+    # Ghost users (once upon a time)
+    my $ghosts;
+    my $rem_ghosts;
+    if ($self->{cfg}->{ghostlist}) {
+        $rem_ghosts = $self->{cfg}->{ghostnicks};
+        #dont want users who never said anything so limit count
+        my @filtered_users;
+        if ($self->{cfg}->{sortbywords}) {
+            @filtered_users = grep { $self->{stats}->{words}{$_} >= $self->{cfg}->{ghostlines} } keys %{ $self->{stats}->{words} };
+        } else {
+            @filtered_users = grep { $self->{stats}->{lines}{$_} >= $self->{cfg}->{ghostlines} } keys %{ $self->{stats}->{lines} };
+        }
+
+        @active = sort { $self->{stats}->{lastvisited}{$a} <=> $self->{stats}->{lastvisited}{$b} } @filtered_users;
+        $ghosts = scalar @active;
+        if ( $ghosts < $rem_ghosts ) {
+            $rem_ghosts = $ghosts;
+            }
+    }
+    
+    if ($self->{cfg}->{ghostlist}) {
+        _html("<br /><b><i>" . $self->_template_text('ghosttop') . "</i></b><table><tr>");
+        for (my $i = 0; $i < $rem_ghosts; $i++) {
+            my $visiblenick;
+            my $ghosts = $active[$i];
+            if ($i != $rem_ghosts and ($i - $rem_ghosts) % 5 == 0) {
+                _html("</tr><tr>");
+            }
+            my $items;
+            if ($self->{users}->{userlinks}{$ghosts}) {
+                $visiblenick = $self->_format_word($self->{users}->{userlinks}{$ghosts}, $ghosts);
+            } else {
+                $visiblenick = $self->_format_word($ghosts);
+            }
+
+            $items = $self->{stats}->{days} - $self->{stats}->{lastvisited}{$active[$i]};
+            
+            my $sex = $self->{users}->{sex}{$ghosts};
+
+            my $output = "";
+            $output .= "<td class=\"rankc10\">";
+
+            if ($sex and $sex eq 'm') {
+                $output .= "<span class=\"male\">";
+            } elsif ($sex and $sex eq 'f') {
+                $output .= "<span class=\"female\">";
+            } elsif ($sex and $sex eq 'b') {
+                $output .= "<span class=\"bot\">";
+            } else {
+                $output .= "<span>";
+            }
+            $output .= "$visiblenick ($items days ago)";
+            $output .= "</span></td>";
+
+            _html($output);
+            undef $output;
+
+        }
+        _html("</tr></table>");
+    }
+    
 
     my %hash;
-    $hash{totalnicks} = $nicks - $remain;
+    $hash{totalnicks} = $nicks - $remain - $rem_ghosts;
     if ($hash{totalnicks} > 0) {
         _html("<br /><b>" . $self->_template_text('totalnicks', %hash) . "</b><br />");
     }
@@ -1007,6 +1092,7 @@ sub _gotkicks
     }
 }
 
+#no joins for twitch pls
 sub _mostjoins
 {
     my $self = shift;
@@ -1667,6 +1753,7 @@ sub _template_text
     }
 
     $hash{channel} = $self->{cfg}->{channel};
+    $hash{chan_link} = $self->{cfg}->{chan_link};
     # the nick is sanitized here, everything else outside of _template_text
     $hash{nick} = $self->_format_word($hash{nick}) if $hash{nick};
 
@@ -1886,6 +1973,43 @@ sub _mostreferencednicks
         }
         _html("</table>");
     }
+}
+
+sub _emotes
+{
+    my $self = shift;
+
+    my %usages;
+    foreach my $emote (sort keys %{ $self->{stats}->{emotes} }) {
+        $usages{$emote} = $self->{stats}->{emotes}{$emote};
+    }
+    my @popular = sort { $usages{$b} <=> $usages{$a} } keys %usages;
+    return unless @popular;
+
+    $self->_headline($self->_template_text('emotetopic'));
+
+    _html("<table border=\"0\" width=\"$self->{cfg}->{tablewidth}\"><tr>");
+    _html("<td>&nbsp;</td><td class=\"tdtop\"><b>" . $self->_template_text('emote') . "</b></td>");
+    _html("<td class=\"tdtop\"></td>");
+    _html("<td class=\"tdtop\"><b>" . $self->_template_text('numberuses') . "</b></td>");
+    _html("<td class=\"tdtop\"><b>" . $self->_template_text('lastused') . "</b></td></tr>");
+
+    for(my $i = 0; $i < $self->{cfg}->{emotehistory}; $i++) {
+        last if $i >= @popular;
+        my $a = $i + 1;
+        my $popular   = $self->_format_word($popular[$i]);
+        my $count     = $self->{stats}->{emotes}{$popular[$i]};
+        my $lastused  = $self->_format_word($self->{stats}->{emotenicks}{$popular[$i]} || "");
+
+        my $class = ($a == 1) ? 'hirankc' : 'rankc';
+        _html("<tr><td class=\"$class\">$a</td>");
+        _html("<td class=\"hicell\">$popular</td>");
+        _html("<td class=\"hicell\"><span class=\"$popular sprite\"></span></td>");
+        _html("<td class=\"hicell\">$count</td>");
+        _html("<td class=\"hicell\">$lastused</td>");
+        _html("</tr>");
+    }
+    _html("</table>");
 }
 
 sub _smileys
@@ -2163,7 +2287,7 @@ sub _user_linetimes
         if ($w) {
             my $pic = 'pic_h_'.(6*$i);
             $bar .= "<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=
-\" id=\"$self->{cfg}->{$pic}\" border=\"0\" width=\"$w\" height=\"15\" align=\"middle\" alt=\"$l\" title=\"$l\" />";
+\" id=\"$self->{cfg}->{$pic}\" border=\"0\" width=\"$w\" height=\"15\" align=\"middle\" alt=\"$l\" title=\"$l\"/>";
         }
     }
     return "$bar&nbsp;$self->{stats}->{lines}{$nick}";
@@ -2366,10 +2490,16 @@ sub _mostactivebyhour
                         if ($self->{cfg}->{showmostactivebyhourgraph}) {
                             my $pic = 'pic_h_'.(6*$period);
                             my $w = int(($count / $maxlines) * 100) || 1;
-                            _html("<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=
-\" id=\"$self->{cfg}->{$pic}\" border=\"0\" width=\"$w\" height=\"15\" align=\"middle\" alt=\"\" />");
+                            _html("<span class=\"gradient-bar\"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=
+\" id=\"$self->{cfg}->{$pic}\" border=\"0\" width=\"$w\" height=\"15\" align=\"middle\" alt=\"\" class=\"right-round\"/></span>");
                         }
-                        _html($self->_format_word($nick)." - ".$count);
+                        if ($a == 1) {
+                            _html("<b>");
+                            _html($self->_format_word($nick)." - ".$count);
+                            _html("</b>");
+                        } else {
+                            _html($self->_format_word($nick)." - ".$count);
+                        }
                         _html("</td>");
                     } else {
                         _html("<td class=\"hicell\">&nbsp;</td>");

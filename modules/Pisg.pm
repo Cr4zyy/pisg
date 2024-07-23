@@ -159,6 +159,7 @@ sub get_default_config_settings
         showrandquote => 1,
         showmuw => 1,
         showmrn => 1,
+        showemotes => 0,
         showsmileys => 0,
         showkarma => 0,
         showmru => 1,
@@ -171,6 +172,8 @@ sub get_default_config_settings
         showmostactivebyhour => 0,
         showmostactivebyhourgraph => 1,
         showonlytop => 0,
+        showkicks => 0,
+        showjoins => 0,
 
         # Less important things
 
@@ -188,6 +191,7 @@ sub get_default_config_settings
         urlhistory => 5,
         chartshistory => 5,
         nickhistory => 5,
+        emotehistory => 10,
         smileyhistory => 10,
         karmahistory => 5,
         wordhistory => 10,
@@ -198,18 +202,24 @@ sub get_default_config_settings
         charset => 'iso-8859-1',
         logcharset => '',
         logcharsetfallback => '',
+        
+        ghostlist => 0,
+        ghostnicks => 10,
+        # words or lines depending on sortbywords below
+        ghostlines => 100,
 
         # sorting
         sortbywords => 0,
 
         # Misc settings
 
-        foulwords => 'ass fuck bitch shit scheisse scheiße kacke arsch ficker ficken schlampe',
+        foulwords => 'abuse autistic asshole bastard bitch bloody bollocks buttcheeks cocksucker cunt damn dick douchebag dyke fag faggot felch fuck fucked fucker fuckface fuckhead fucktard fuk gay goddamn hell hitler homophobic idiot immature inbred incestuous jackass jerk moron motherfucker nazi nigga niggah nigger nig nignog penis prick pussypie rape retard scumbag shit shitty slut sonofabitch spamstoned spastic tits twat unwashed whore wanker scheisse scheiße kacke arsch ficker ficken schlampe',
+        emotewords => 'ratJAM AlienPls 4Head AMPEnergy AMPEnergyCherry ArgieB8 ArsonNoSexy AsianGlow BabyRage BatChest BegWan BibleThump BigBrother BionicBunion BlargNaut BloodTrail BrainSlug BrokeBack BudStar CoolCat CoolStoryBob CorgiDerp CrreamAwk CrreamHey CurseLit DatSheffy DBstyle DendiFace DogFace DoritosChip EleGiggle ExtraLife EZ FBCatch FBCougar FBBlocker FBChillinn FBDoodle FBJiggle FBParty FBSpiral FBtouchdown FailFish FPSMarksman FootGoal FrankerZ FreakinStinkin FUNgineer FunRun HotPokket ImGlitch InuyoFace ItsBoshyTime Jebaited JonCarnage KAPOW KapChat Kappa KappaClaus KappaPride Keepo KevinTurtle Kippa KippaRIP KZskull MVGame McaT Minglee MorphinOut MrDestructoid NadesOut Nerd Ninjahger NinjaTroll NotATK OhMyDog OneHand OPFrog OSfrog OSkomodo OSsloth PJSalt PJSugar PMSTwin PanicBasket PartyTime PartyTimeNot PepeLaugh PermaSmug PipeHype Poooound PogChamp PogChampOld PraiseIt PRChase PrimeMe PunchTrees RaccAttack RalpherZ RedCoat ResidentSleeper RlyTho RuleFive SabaPing SabaPingM SabaPingS SoonerLater SMOrc SSSsss StinkyCheese StoneLightning SwiftRage SwiftRageTilt Tankbuster TehFunrun TheIlluminati TheRinger TinyFace TooSpicy TriHard TTours turtT Twazzy VoHiYo WTRuck YouDontSay YouWHY YuuLie Pepega POGGERS peepoHappy peepoSad monkaS widepeepoHappy widepeepoSad monkaHmm FeelsBadMan FeelsGoodMan pepeLaugh PepeHands PogU PepeJAM PepeD pepeClap peepoShy peepoHey peepoArrive peepoLeave peepoCheer peepoPog peepoGiggles 3Head catJAM modCheck Clap monkaW LUL OMEGALUL AYAYA HYPERS',
         violentwords => 'slaps beats smacks',
         chartsregexp => '(?:is )?(?:np:|(?:now )?playing:? |listening to:? )(?:MPEG stream from)?\s*(.*)',
-        ignorewords => '',
+        ignorewords => 'HYPERS',
         noignoredquotes => 0,
-        tablewidth => 574,
+        tablewidth => 800,
         regexpaliases => 0,
 
         botnicks => '',            # Needed for DCpp format (non-irc)
@@ -218,7 +228,7 @@ sub get_default_config_settings
         modules_dir => '',         # set in get_cmdline_options
         cchannels => '',           # set in get_cmdline_options
 
-        version => "0.80-preview2"
+        version => "0.80-preview2+twitch"
     };
 
     # This enables us to use the search_path in other modules
@@ -445,6 +455,9 @@ sub init_pisg
     $self->{cfg}->{foulwords} = wordlist_regexp($self->{cfg}->{foulwords}, $self->{cfg}->{regexpaliases});
     $self->{cfg}->{ignorewords} = wordlist_regexp($self->{cfg}->{ignorewords}, $self->{cfg}->{regexpaliases});
     $self->{cfg}->{violentwords} = wordlist_regexp($self->{cfg}->{violentwords}, $self->{cfg}->{regexpaliases});
+    
+    # twitch emote wordlist
+    $self->{cfg}->{emotewords} = wordlist_regexp($self->{cfg}->{emotewords}, $self->{cfg}->{regexpaliases});
 
     # Add trailing slash when it's not there..
     $self->{cfg}->{imagepath} =~ s/([^\/])$/$1\//;

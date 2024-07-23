@@ -103,12 +103,16 @@ sub add_url_ignore
 sub is_nick
 {
     my ($nick, $wilds) = @_;
+    
+    # Remove '@' prefix if present
+    $nick =~ s/^@//;
+
     my $lcnick = lc($nick);
 
     if ($aliases{$lcnick}) {
         return $aliases{$lcnick};
     } elsif ($aliasseen{$lcnick}) {
-        return $aliasseen{$lcnick}
+        return $aliasseen{$lcnick};
     }
 
     # check aliaswilds if were are in _mostusedword()
@@ -122,6 +126,7 @@ sub is_nick
     }
     return 0;
 }
+
 
 # For efficiency reasons, find_alias() caches aliases when it finds them,
 # because the regexp search through %aliaswilds is *really* expensive.
