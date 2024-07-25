@@ -750,7 +750,7 @@ sub _activenicks
     
     # Ghost users (once upon a time)
     my $ghosts;
-    my $rem_ghosts;
+    my $rem_ghosts = 0;
     if ($self->{cfg}->{ghostlist}) {
         $rem_ghosts = $self->{cfg}->{ghostnicks};
         #dont want users who never said anything so limit count
