@@ -220,6 +220,14 @@ TD
     z-index: 10;
 }
 
+.rotate-text {
+    display: inline-block;
+    transform: rotate(315deg);
+    transform-origin: left top;
+    white-space: nowrap;
+
+}
+
 
 /* -----------------------------------------------------
    created with https://www.codeandweb.com/texturepacker 

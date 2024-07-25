@@ -432,7 +432,7 @@ sub _activedays {
 
     for (my $day = $days - $ndays + 1; $day <= $days ; $day++) {
         my $lines = $self->{stats}->{day_lines}[$day];
-        _html("<td align=\"center\" valign=\"bottom\" class=\"asmall\">$lines<br /><span class=\"gradient-bar-v\">");
+        _html("<td align=\"center\" valign=\"bottom\" class=\"asmall\"><span class=\"rotate-text\">$lines</span><br /><span class=\"gradient-bar-v\">");
         my $first = 1;
         for (my $time = 4; $time >= 0; $time--) {
             if (defined($self->{stats}->{day_times}[$day][$time])) {
@@ -492,7 +492,7 @@ sub _activetimes
         my $image = "pic_v_".(int($hour/6)*6);
         $image = $self->{cfg}->{$image};
 
-        $output{$hour} = "<td align=\"center\" valign=\"bottom\" class=\"asmall\">$percent%<br /><span class=\"gradient-bar-v\"><img id=\"$image\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=
+        $output{$hour} = "<td align=\"center\" valign=\"bottom\" class=\"asmall\"><span class=\"rotate-text\">$percent%</span><br /><span class=\"gradient-bar-v\"><img id=\"$image\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=
 \" width=\"15\" height=\"$size\" alt=\"$lines_per_hour\" title=\"$lines_per_hour\" class=\"top-round\"/></span></td>" if $size;
     }
 
